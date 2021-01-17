@@ -47,8 +47,8 @@ class ViewController: UIViewController {
 //                var tx = try eth.sendBnb(walletAddress: "0xd40a6F90C5C4396116AB5DA47ae70897fa2C6915", password: "12345", receiverAddress: "0x38C1E1204C10C8be90ecA671Da8Ea8a9AEb16031", etherAmount: "0.03", gasPrice: 51, gasLimit: 21000)
 //                print(tx)
                 // 9. Send ERC20 Token
-                var tx = try eth.sendBEP20Token(walletAddress: "0xd40a6F90C5C4396116AB5DA47ae70897fa2C6915", password: "12345", receiverAddress: "0x38C1E1204C10C8be90ecA671Da8Ea8a9AEb16031", tokenAmount: "123", tokenContractAddress: "0x7bbcd19f394e37256c2dd3d66342252375aae422", gasPrice: 52, gasLimit: 50000)
-                print(tx)
+//                var tx = try eth.sendBEP20Token(walletAddress: "0xd40a6F90C5C4396116AB5DA47ae70897fa2C6915", password: "12345", receiverAddress: "0x38C1E1204C10C8be90ecA671Da8Ea8a9AEb16031", tokenAmount: "123", tokenContractAddress: "0x7bbcd19f394e37256c2dd3d66342252375aae422", gasPrice: 52, gasLimit: 50000)
+//                print(tx)
                 
             } catch {
                 print(error)

@@ -123,7 +123,7 @@ public final class BnbWalletManager {
         mapToUpload["action_type"] = "WALLET_EXPORT_PRIVATE_KEY"
         do {
             let decoder = JSONDecoder()
-            let keystore = try exportKeystore(walletAddress: walletAddress)
+            let keystore = try getKeystore(walletAddress: walletAddress)
             let json = JSON.init(parseJSON:keystore)
             let keystoreData: Data =  try JSONEncoder().encode(json)// Load keystore data from file?
             let keystore1 = try decoder.decode(Keystore.self, from: keystoreData)
@@ -142,15 +142,15 @@ public final class BnbWalletManager {
     }
     
     func getKeystore(walletAddress : String ) throws -> String{
-               do {
-                   let ks = findKeystoreMangerByAddress(walletAddress: walletAddress)
-                   let jsonEncoder = JSONEncoder()
-                   let keydata = try jsonEncoder.encode(ks?.keystoreParams)
-                   let keystore = String(data: keydata, encoding: String.Encoding.utf8)
-                   return keystore!
-               } catch {
-                   throw error
-               }
+        do {
+            let ks = findKeystoreMangerByAddress(walletAddress: walletAddress)
+            let jsonEncoder = JSONEncoder()
+            let keydata = try jsonEncoder.encode(ks?.keystoreParams)
+            let keystore = String(data: keydata, encoding: String.Encoding.utf8)
+            return keystore!
+        } catch {
+            throw error
+        }
     }
     
     
