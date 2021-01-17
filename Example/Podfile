@@ -4,7 +4,10 @@ platform :ios, '9.0'
 
 target 'BinanceSmartChainSDK_Example' do
   pod 'BinanceSmartChainSDK', :path => '../'
-
+  pod 'web3swift'
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
+  
   target 'BinanceSmartChainSDK_Tests' do
     inherit! :search_paths
 

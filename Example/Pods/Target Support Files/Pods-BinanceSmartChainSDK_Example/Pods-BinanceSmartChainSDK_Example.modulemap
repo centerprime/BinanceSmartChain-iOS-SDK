@@ -1,0 +1,6 @@
+framework module Pods_BinanceSmartChainSDK_Example {
+  umbrella header "Pods-BinanceSmartChainSDK_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
