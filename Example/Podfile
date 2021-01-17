@@ -1,11 +1,11 @@
 use_frameworks!
 
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'BinanceSmartChainSDK_Example' do
   pod 'BinanceSmartChainSDK', :path => '../'
   pod 'web3swift'
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 4.0'
   pod 'SwiftyJSON'
   
   target 'BinanceSmartChainSDK_Tests' do

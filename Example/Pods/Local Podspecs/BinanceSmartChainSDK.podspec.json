@@ -1,6 +1,6 @@
 {
   "name": "BinanceSmartChainSDK",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "BinanceSmartChainSDK by Centerprime",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/centerprime/BinanceSmartChain-iOS-SDK.git",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/centerprime/BinanceSmartChain-iOS-SDK.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "9.0"

@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.9.1)
   - BigInt (4.0.0)
-  - BinanceSmartChainSDK (0.1.0):
+  - BinanceSmartChainSDK (0.1.1):
     - Alamofire
     - SwiftyJSON
     - web3swift
@@ -55,7 +55,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   BigInt: 2aad1a9942dc932ec8b84290d2c564a3d76f97ab
-  BinanceSmartChainSDK: d7edd54a3df812706f36f7eed076ac03ce5ff450
+  BinanceSmartChainSDK: 6225f0a0f01614082cffac2ec5e61d4054f54be2
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   Nimble: 98b888285a615fd34f20e61753cf58ea1402bde4
   PromiseKit: 9616b0afef31eae56ab9ce044c8ec2b8612a15cd
