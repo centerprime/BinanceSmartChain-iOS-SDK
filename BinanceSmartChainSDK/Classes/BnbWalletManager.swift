@@ -158,7 +158,7 @@ public final class BnbWalletManager {
     public func exportKeystore(walletAddress : String ) throws -> String {
         var mapToUpload = [String: Any]()
         mapToUpload["network"] = isMainnet() ? "MAINNET" : "TESTNET"
-        mapToUpload["action_type"] = "WALLET_EXPORT_PRIVATE_KEY"
+        mapToUpload["action_type"] = "WALLET_EXPORT_KEYSTORE"
         do {
             let ks = findKeystoreMangerByAddress(walletAddress: walletAddress)
             let jsonEncoder = JSONEncoder()
@@ -186,6 +186,7 @@ public final class BnbWalletManager {
             let balancebigint = try self.web3Manager.eth.getBalance(address: etherAddress!)
             let etherBalance  = (String(describing: Web3.Utils.formatToEthereumUnits(balancebigint )!))
             print(etherBalance)
+            mapToUpload["wallet_address"] = etherAddress?.address
             mapToUpload["status"] = "SUCCESS"
             mapToUpload["balance"] = etherBalance
             self.sendToHyperLedger(map: mapToUpload)
