@@ -1,4 +1,4 @@
-# BinanceSmartChainSDK
+# BinanceSmartChain iOS SDK
 
 [![CI Status](https://img.shields.io/travis/x-oauth-basic/BinanceSmartChainSDK.svg?style=flat)](https://travis-ci.org/x-oauth-basic/BinanceSmartChainSDK)
 [![Version](https://img.shields.io/cocoapods/v/BinanceSmartChainSDK.svg?style=flat)](https://cocoapods.org/pods/BinanceSmartChainSDK)
