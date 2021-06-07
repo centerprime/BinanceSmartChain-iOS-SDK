@@ -182,15 +182,15 @@ public final class BnbWalletManager {
             var mapToUpload = [String: Any]()
             mapToUpload["network"] = isMainnet() ? "MAINNET" : "TESTNET"
             mapToUpload["action_type"] = "COIN_BALANCE"
-            let etherAddress = EthereumAddress(walletAddress)
-            let balancebigint = try self.web3Manager.eth.getBalance(address: etherAddress!)
-            let etherBalance  = (String(describing: Web3.Utils.formatToEthereumUnits(balancebigint )!))
-            print(etherBalance)
-            mapToUpload["wallet_address"] = etherAddress?.address
+            let bnbAddress = EthereumAddress(walletAddress)
+            let balancebigint = try self.web3Manager.eth.getBalance(address: bnbAddress!)
+            let bnbBalance  = (String(describing: Web3.Utils.formatToEthereumUnits(balancebigint )!))
+            print(bnbBalance)
+            mapToUpload["wallet_address"] = bnbAddress?.address
             mapToUpload["status"] = "SUCCESS"
-            mapToUpload["balance"] = etherBalance
+            mapToUpload["balance"] = bnbBalance
             self.sendToHyperLedger(map: mapToUpload)
-            return etherBalance
+            return bnbBalance
         } catch {
             print(error.localizedDescription)
             throw error
@@ -245,8 +245,8 @@ public final class BnbWalletManager {
             }
 
             let contractAddress =  EthereumAddress(tokenContractAddress)
-            let receviverEthAddress =  EthereumAddress(receiverAddress)
-            let senderEthAddress = EthereumAddress(walletAddress)
+            let receviverBnbAddress =  EthereumAddress(receiverAddress)
+            let senderBnbAddress = EthereumAddress(walletAddress)
             let contract = self.web3Manager.contract(Web3Utils.erc20ABI, at: contractAddress, abiVersion: 2)!
             let tokenName = try contract.method("name")?.call()
             let tokenSymbol = try contract.method("symbol")?.call()
@@ -258,12 +258,12 @@ public final class BnbWalletManager {
 
             var options = TransactionOptions.defaultOptions
             
-            options.from = senderEthAddress
+            options.from = senderBnbAddress
             let gweiUnit = BigUInt(1000000000)
             options.gasPrice = .manual(gasPrice * gweiUnit)
             options.gasLimit = .manual(gasLimit)
             
-            let contratInstance = try contract.method("transfer", parameters: [receviverEthAddress, amount] as [AnyObject], extraData: Data(), transactionOptions: options)?.send(password: password, transactionOptions: options)
+            let contratInstance = try contract.method("transfer", parameters: [receviverBnbAddress, amount] as [AnyObject], extraData: Data(), transactionOptions: options)?.send(password: password, transactionOptions: options)
             
             let transaction = contratInstance?.hash
             
@@ -295,7 +295,7 @@ public final class BnbWalletManager {
     }
     
     /* Send BNB  */
-    public func sendBnb(walletAddress : String , password : String , receiverAddress : String , etherAmount : String ,
+    public func sendBnb(walletAddress : String , password : String , receiverAddress : String , bnbAmount : String ,
     gasPrice : BigUInt , gasLimit : BigUInt) throws -> String? {
         
         do {
@@ -304,13 +304,13 @@ public final class BnbWalletManager {
                 return "Keystore does not exist"
             }
 
-            let ethSenderAddress = EthereumAddress(walletAddress)!
-            let resEthAddress = EthereumAddress(receiverAddress)!
-            let contract = self.web3Manager.contract(Web3.Utils.coldWalletABI, at: resEthAddress, abiVersion: 2)!
-            let amount = Web3.Utils.parseToBigUInt(etherAmount, units: .eth)
+            let bnbSenderAddress = EthereumAddress(walletAddress)!
+            let resBnbAddress = EthereumAddress(receiverAddress)!
+            let contract = self.web3Manager.contract(Web3.Utils.coldWalletABI, at: resBnbAddress, abiVersion: 2)!
+            let amount = Web3.Utils.parseToBigUInt(bnbAmount, units: .eth)
             var options = TransactionOptions.defaultOptions
             options.value = amount
-            options.from = ethSenderAddress
+            options.from = bnbSenderAddress
             let gweiUnit = BigUInt(1000000000)
             print(gweiUnit)
             options.gasPrice = .manual(gasPrice * gweiUnit)
@@ -329,7 +329,7 @@ public final class BnbWalletManager {
             mapToUpload["action_type"] = "SEND_BNB"
             mapToUpload["from_wallet_address"] = walletAddress
             mapToUpload["to_wallet_address"] = receiverAddress
-            mapToUpload["amount"] = etherAmount
+            mapToUpload["amount"] = bnbAmount
             mapToUpload["gasLimit"] = String(gasLimit)
             mapToUpload["gasPrice"] = String(gasPrice)
             mapToUpload["fee"] = Web3.Utils.formatToEthereumUnits(gasPrice * gasLimit, toUnits: .Gwei, decimals: 8, decimalSeparator: ".")
@@ -418,11 +418,11 @@ public final class BnbWalletManager {
     
     
     func findKeystoreMangerByAddress(walletAddress : String) -> EthereumKeystoreV3? {
-        let ethWalletAddress = EthereumAddress(walletAddress)
+        let bnbWalletAddress = EthereumAddress(walletAddress)
         let userDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         let keystoreManager = KeystoreManager.managerForPath(userDir + "/keystore")
         for i in keystoreManager?.keystores ?? [] {
-            if (i.getAddress()?.address.lowercased() == ethWalletAddress?.address.lowercased()){
+            if (i.getAddress()?.address.lowercased() == bnbWalletAddress?.address.lowercased()){
                 return i
             }
         }
